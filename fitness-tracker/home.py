@@ -2,7 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request, session
 from datetime import timedelta
 
 app = Flask(__name__)
-app.secret_key = "joonafoon"
+app.secret_key = "I_Love_OCR"
 app.permanent_session_lifetime = timedelta(hours=5)
 
 @app.route("/")
@@ -33,7 +33,6 @@ def user():
 def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
-
 
 
 
