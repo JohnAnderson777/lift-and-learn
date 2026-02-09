@@ -1,13 +1,15 @@
 from multiprocessing.util import debug
 from pdb import run
-from flask import Flask, redirect, url_for, render_template, request, session
+from flask import Flask, redirect, url_for, render_template, request, session, flash
 from datetime import timedelta
+from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
 
 
-
 app = Flask(__name__)
-app.secret_key = "I_Love_OCR"
+
+
+app.secret_key = "i_Love_OCR"
 app.permanent_session_lifetime = timedelta(hours=5)
 
 @app.route("/")
@@ -48,9 +50,16 @@ def contact():
 @app.route("/register", methods=["POST", "GET"])
 def register():
     # if request.method == "POST":
+    # username = request.form['username']
+    # password = 
     return render_template("register.html")
 
+# ------- DATABASE -----------
 
+def databaseConnect():
+    conn = sqlite3.connect('Fitness Database.db')
+    conn.row_factory = sqlite3.Row
+    return conn
 
 
 
