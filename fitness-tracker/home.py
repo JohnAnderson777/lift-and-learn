@@ -1,6 +1,10 @@
+from multiprocessing.util import debug
+from pdb import run
 from flask import Flask, redirect, url_for, render_template, request, session
 from datetime import timedelta
 import sqlite3
+
+
 
 app = Flask(__name__)
 app.secret_key = "I_Love_OCR"
@@ -45,6 +49,8 @@ def contact():
 def register():
     # if request.method == "POST":
     return render_template("register.html")
+
+
 
 
 
