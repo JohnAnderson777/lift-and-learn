@@ -36,6 +36,8 @@ def logout():
 def contact():
     return render_template("contact.html")
 
+
+
 @app.route("/register", methods=["POST", "GET"])
 def register():
     if request.method == "POST":
@@ -61,35 +63,35 @@ def register():
 
     return render_template("register.html")
 
-# ------- DATABASE -----------
 
-def databaseConnect():
-    conn = sqlite3.connect('Fitness Database.db')
-    conn.row_factory = sqlite3.Row
-    return conn
+@app.route("/login", methods=["POST", "GET"])
+def login():
+    if request.method == "POST":
+       username = request.form['username']
+       password = request.form['password']
 
-# @app.route("/login", methods=["POST", "GET"])
-# def login():
- #   if request.method == "POST":
+    conn = DatabaseConnect()
+    # Fetch user data
+    user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+    conn.close()
+    # check user exists + hashed password matches
+    if user and check_password_hash(user['hashedPassword'], password):
+        session['user.id'] = user['id']
+        session['username'] = user['username']
+        session['password'] = user['password']
+        return redirect(url_for('user'))
+    else:
+        flash("Invalid username or password. Please try again.")
+        return redirect(url_for('login'))
         
+    return render_template("login.html")
 
 
 
 
-     #   session.permanent = True
-    #    user = request.form["nm"]
-     #   session["user"] = user
-     #   return redirect(url_for("user"))
-   # else:
-     #   if "user" in session:
-     #       return redirect(url_for("user"))
-     #   return render_template("login.html")
+# -/////   DATABASE   //////
 
 
-
-
-
-# ---- DATABASE ----
 def DatabaseConnect():
     conn = sqlite3.connect("fitness Database.db")
     conn.row_factory = sqlite3.Row
