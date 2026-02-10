@@ -43,19 +43,20 @@ def register():
     if request.method == "POST":
         username = request.form['username']
         password = request.form['password']
-        hashedPassword = generate_password_hash(password, method='pasf134hs')
+        email = request.form['email']   
+        hashedPassword = generate_password_hash(password, method='pbkdf2:sha256')
 
         conn = DatabaseConnect()
         try:
         # ? placeholders to stop SQL injection
-            conn.execute('INSERT INTO users (username, hashedPassword) VALUES (?, ?)', (username, hashedPassword))
+            conn.execute('INSERT INTO users (username, hash, email) VALUES (?, ?, ?)', (username, hashedPassword, email))
             conn.commit()
             conn.close()
             flash("Registration successful. Now please Login to your account.")
             return redirect(url_for('login'))
 
 
-    # If username already taken:
+   # If username already taken:
 
         except sqlite3.IntegrityError:
             flash("Username already exists. Please choose a different username.")
@@ -67,22 +68,26 @@ def register():
 @app.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-       username = request.form['username']
-       password = request.form['password']
+        username = request.form['username']
+        password = request.form['password']
 
-    conn = DatabaseConnect()
-    # Fetch user data
-    user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
-    conn.close()
+
+     # Fetch user data
+
+        conn = DatabaseConnect()
+        user = conn.execute('SELECT * FROM users WHERE username = ?', (username,)).fetchone()
+        conn.close()
+
     # check user exists + hashed password matches
-    if user and check_password_hash(user['hashedPassword'], password):
-        session['user.id'] = user['id']
-        session['username'] = user['username']
-        session['password'] = user['password']
-        return redirect(url_for('user'))
-    else:
-        flash("Invalid username or password. Please try again.")
-        return redirect(url_for('login'))
+
+        if user and check_password_hash(user['hashedPassword'], password):
+            session['user.id'] = user['id']
+            session['username'] = user['username']
+            session['password'] = user['password']
+            return redirect(url_for('user'))
+        else:
+            flash("Invalid username or password. Please try again.")
+            return redirect(url_for('login'))
         
     return render_template("login.html")
 
@@ -93,7 +98,7 @@ def login():
 
 
 def DatabaseConnect():
-    conn = sqlite3.connect("fitness Database.db")
+    conn = sqlite3.connect("./SQLite/Fitness Database.db")
     conn.row_factory = sqlite3.Row
     print("Database Connected Successfully")
     return conn
