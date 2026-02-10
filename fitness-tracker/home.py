@@ -38,7 +38,27 @@ def contact():
 
 @app.route("/register", methods=["POST", "GET"])
 def register():
-    # if request.method == "POST":
+    if request.method == "POST":
+        username = request.form['username']
+        password = request.form['password']
+        hashedPassword = generate_password_hash(password, method='pasf134hs')
+
+        conn = DatabaseConnect()
+        try:
+        # ? placeholders to stop SQL injection
+            conn.execute('INSERT INTO users (username, hashedPassword) VALUES (?, ?)', (username, hashedPassword))
+            conn.commit()
+            conn.close()
+            flash("Registration successful. Now please Login to your account.")
+            return redirect(url_for('login'))
+
+
+    # If username already taken:
+
+        except sqlite3.IntegrityError:
+            flash("Username already exists. Please choose a different username.")
+            return redirect(url_for('register'))
+
     return render_template("register.html")
 
 # ------- DATABASE -----------
