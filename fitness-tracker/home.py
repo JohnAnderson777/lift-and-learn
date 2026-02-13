@@ -14,7 +14,7 @@ app.permanent_session_lifetime = timedelta(hours=5)
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("dashboard.html")
 
 
 @app.route("/user")
@@ -24,12 +24,12 @@ def user():
         return f"<h1>{user}</h1>"
     else:
         return redirect(url_for("login"))
-    
+
+
 @app.route("/logout")
 def logout():
     session.pop("user", None)
     return redirect(url_for("login"))
-
 
 
 @app.route("/contact")
