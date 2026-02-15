@@ -1,9 +1,13 @@
 from multiprocessing.util import debug
 from pdb import run
 from flask import Flask, redirect, url_for, render_template, request, session, flash
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from database import init_db, User, UserProfile, WorkoutPlan
+from workout_generator import generate_workout_plan
 from datetime import timedelta
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
+import os
 
 
 app = Flask(__name__)
@@ -107,6 +111,9 @@ def DatabaseConnect():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+
+
 
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -244,7 +251,11 @@ def dashboard():
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True, host='0.0.0.0', port=5000)import sqlite3
+    app.run(debug=True, host='0.0.0.0', port=5000)
+
+
+
+import sqlite3
 import json
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
@@ -368,9 +379,11 @@ class WorkoutPlan:
             conn.close()
             print(f"Error creating workout plan: {e}")
             return False
-
-    @staticmethod
-    def getn = get_db()
+        
+        
+  @staticmethod
+    def get_active_by_user_id(user_id):
+        conn = get_db()
         plan = conn.execute(
             'SELECT * FROM workout_plans WHERE user_id = ? AND is_active = 1 ORDER BY created_at DESC LIMIT 1',
             (user_id,)
@@ -380,5 +393,4 @@ class WorkoutPlan:
             plan_dict = dict(plan)
             plan_dict['plan_data'] = json.loads(plan_dict['plan_data'])
             return plan_dict
-        return None_active_by_user_id(user_id):
-        con
+        return None
