@@ -98,7 +98,7 @@
         <h3>Workout Days</h3>
         <div class="workout-days">
             {% for workout in workout_plan.plan_data.workouts %}
-            <button class="workout-day-btn {% if loop.index0 == 0 %}active{% endif %}" onclick="showWorkout({{ loop.index0 }})">
+            <button class="workout-day-btn {% if loop.index0 == 0 %}active{% endif %}" data-workout-index="{{ loop.index0 }}">
                 <div class="day-title">{{ workout.day }}</div>
                 <div class="day-focus">{{ workout.focus }}</div>
             </button>
@@ -186,5 +186,12 @@ document.querySelectorAll('.workout-detail').forEach(detail => detail.classList.
 document.querySelectorAll('.workout-day-btn')[index].classList.add('active');
 document.getElementById(`workout-${index}`).classList.add('active');
 }
+
+document.querySelectorAll('.workout-day-btn').forEach(btn => {
+btn.addEventListener('click', () => {
+const index = Number(btn.dataset.workoutIndex);
+showWorkout(index);
+});
+});
 </script>
 {% endblock %} 
