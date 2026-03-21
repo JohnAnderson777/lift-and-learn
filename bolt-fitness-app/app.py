@@ -4,8 +4,9 @@ from database import init_db, User, UserProfile, WorkoutPlan
 from workout_generator import generate_workout_plan
 import os
 
+
 app = Flask(__name__)
-app.secret_key = os.urandom(24)
+app.secret_key = "I_Love_OCR"
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -15,16 +16,22 @@ login_manager.login_view = 'login'
 def load_user(user_id):
     return User.get_by_id(int(user_id))
 
+@app.template_filter('get_user_profile')
+def get_user_profile(user_id):
+    return UserProfile.get_by_user_id(user_id)
+
+@app.template_filter('get_workout_plan')
+def get_workout_plan(user_id):
+    return WorkoutPlan.get_active_by_user_id(user_id)
+
 @app.route('/')
 def index():
-    if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
-    return redirect(url_for('login'))
+    return render_template('home.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('index'))
 
     if request.method == 'POST':
         email = request.form.get('email')
@@ -38,7 +45,7 @@ def register():
         if user_id:
             user = User.get_by_email(email)
             login_user(user)
-            return redirect(url_for('questionnaire'))
+            return redirect(url_for('index'))
         else:
             flash('Email already exists. Please login instead.', 'error')
             return render_template('register.html')
@@ -48,7 +55,7 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('index'))
 
     if request.method == 'POST':
         email = request.form.get('email')
@@ -58,11 +65,7 @@ def login():
 
         if user and user.check_password(password):
             login_user(user)
-            profile = UserProfile.get_by_user_id(user.id)
-            if profile:
-                return redirect(url_for('dashboard'))
-            else:
-                return redirect(url_for('questionnaire'))
+            return redirect(url_for('index'))
         else:
             flash('Invalid email or password', 'error')
             return render_template('login.html')
@@ -73,14 +76,18 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
 
 @app.route('/questionnaire', methods=['GET', 'POST'])
-@login_required
 def questionnaire():
+    if not current_user.is_authenticated:
+        session['questionnaire_data'] = None
+        flash('Please login or register to save your workout plan', 'info')
+        return redirect(url_for('login'))
+
     profile = UserProfile.get_by_user_id(current_user.id)
     if profile:
-        return redirect(url_for('dashboard'))
+        return redirect(url_for('index'))
 
     if request.method == 'POST':
         data = {
@@ -115,22 +122,11 @@ def questionnaire():
                 workout_plan_data
             )
 
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('index'))
         else:
             flash('Error creating profile. Please try again.', 'error')
 
     return render_template('questionnaire.html')
-
-@app.route('/dashboard')
-@login_required
-def dashboard():
-    profile = UserProfile.get_by_user_id(current_user.id)
-    if not profile:
-        return redirect(url_for('questionnaire'))
-
-    workout_plan = WorkoutPlan.get_active_by_user_id(current_user.id)
-
-    return render_template('dashboard.html', profile=profile, workout_plan=workout_plan, user=current_user)
 
 if __name__ == '__main__':
     init_db()

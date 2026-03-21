@@ -1,4 +1,4 @@
--- !sqlitedb
+-- !sqlite
 -- Fitness Workout Plan Website Database Schema
 -- SQLite Database for A-Level Computer Science NEA
 
