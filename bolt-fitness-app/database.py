@@ -18,8 +18,9 @@ def init_db():
     conn.close()
 
 class User:
-    def __init__(self, id, email, password_hash, created_at):
+    def __init__(self, id, username, email, password_hash, created_at):
         self.id = id
+        self.username = username
         self.email = email
         self.password_hash = password_hash
         self.created_at = created_at
@@ -31,13 +32,13 @@ class User:
         return str(self.id)
 
     @staticmethod
-    def create(email, password):
+    def create(username, email, password):
         conn = get_db()
         password_hash = generate_password_hash(password)
         try:
             cursor = conn.execute(
-                'INSERT INTO users (email, password_hash) VALUES (?, ?)',
-                (email, password_hash)
+                'INSERT INTO users (username, email, password_hash) VALUES (?, ?, ?)',
+                (username, email, password_hash)
             )
             conn.commit()
             user_id = cursor.lastrowid
@@ -55,7 +56,7 @@ class User:
         ).fetchone()
         conn.close()
         if user_data:
-            return User(user_data['id'], user_data['email'],
+            return User(user_data['id'], user_data['username'], user_data['email'],
                        user_data['password_hash'], user_data['created_at'])
         return None
 
@@ -67,7 +68,7 @@ class User:
         ).fetchone()
         conn.close()
         if user_data:
-            return User(user_data['id'], user_data['email'],
+            return User(user_data['id'], user_data['username'], user_data['email'],
                        user_data['password_hash'], user_data['created_at'])
         return None
 

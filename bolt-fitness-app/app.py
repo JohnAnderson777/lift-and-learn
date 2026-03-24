@@ -4,9 +4,8 @@ from database import init_db, User, UserProfile, WorkoutPlan
 from workout_generator import generate_workout_plan
 import os
 
-
 app = Flask(__name__)
-app.secret_key = "I_Love_OCR"
+app.secret_key = os.urandom(24)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -34,20 +33,23 @@ def register():
         return redirect(url_for('index'))
 
     if request.method == 'POST':
+        username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
 
-        if not email or not password:
-            flash('Please provide both email and password', 'error')
+        if not username or not email or not password:
+            flash('Please provide username, email and password', 'error')
             return render_template('register.html')
 
-        user_id = User.create(email, password)
+        user_id = User.create(username, email, password)
         if user_id:
             user = User.get_by_email(email)
             login_user(user)
-            return redirect(url_for('index'))
+            next_page = session.get('next_after_login', url_for('index'))
+            session.pop('next_after_login', None)
+            return redirect(next_page)
         else:
-            flash('Email already exists. Please login instead.', 'error')
+            flash('Username or email already exists. Please try different credentials.', 'error')
             return render_template('register.html')
 
     return render_template('register.html')
@@ -65,7 +67,9 @@ def login():
 
         if user and user.check_password(password):
             login_user(user)
-            return redirect(url_for('index'))
+            next_page = session.get('next_after_login', url_for('index'))
+            session.pop('next_after_login', None)
+            return redirect(next_page)
         else:
             flash('Invalid email or password', 'error')
             return render_template('login.html')
@@ -78,12 +82,17 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/questionnaire', methods=['GET', 'POST'])
-def questionnaire():
+@app.route('/start-questionnaire')
+def start_questionnaire():
     if not current_user.is_authenticated:
-        session['questionnaire_data'] = None
-        flash('Please login or register to save your workout plan', 'info')
+        session['next_after_login'] = url_for('questionnaire')
+        flash('Please login or register to create your workout plan', 'info')
         return redirect(url_for('login'))
+    return redirect(url_for('questionnaire'))
+
+@app.route('/questionnaire', methods=['GET', 'POST'])
+@login_required
+def questionnaire():
 
     profile = UserProfile.get_by_user_id(current_user.id)
     if profile:

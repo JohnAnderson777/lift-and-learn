@@ -14,7 +14,7 @@
         <div class="nav-user">
             {% if current_user.is_authenticated %}
                 <div class="user-info">
-                    <div class="user-name">{{ current_user.email }}</div>
+                    <div class="user-name">{{ current_user.username }}</div>
                 </div>
                 <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Logout</a>
             {% else %}
@@ -26,14 +26,14 @@
 </nav>
 
 <div class="dashboard-container">
-    {% if current_user.is_authenticated %}
-        {% set profile = current_user.id | get_user_profile %}
-        {% set workout_plan = current_user.id | get_workout_plan %}
+    {% set profile = current_user.id | get_user_profile if current_user.is_authenticated else None %}
+    {% set workout_plan = current_user.id | get_workout_plan if current_user.is_authenticated else None %}
 
+    {% if current_user.is_authenticated %}
         {% if not profile %}
             <div class="hero-section">
-                <h1>Welcome to FitPlan Pro</h1>
-                <p>Create your personalized workout plan in minutes</p>
+                <h1>Welcome, {{ current_user.username }}!</h1>
+                <p>Ready to transform your fitness journey? Create your personalized workout plan in minutes.</p>
                 <a href="{{ url_for('questionnaire') }}" class="btn btn-primary btn-lg">Find Your Workout Plan</a>
             </div>
         {% else %}
@@ -186,10 +186,7 @@
         <div class="hero-section">
             <h1>Welcome to FitPlan Pro</h1>
             <p>Your personalized fitness journey starts here. Create custom workout plans tailored to your goals, fitness level, and schedule.</p>
-            <div class="hero-actions">
-                <a href="{{ url_for('register') }}" class="btn btn-primary btn-lg">Get Started</a>
-                <a href="{{ url_for('login') }}" class="btn btn-secondary btn-lg">Login</a>
-            </div>
+            <a href="{{ url_for('start_questionnaire') }}" class="btn btn-primary btn-lg">Find Your Workout Plan</a>
         </div>
 
         <div class="features-section">
@@ -230,6 +227,7 @@
             </div>
         </div>
     {% endif %}
+
 </div>
 
 <script>
