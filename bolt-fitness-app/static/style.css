@@ -365,17 +365,16 @@ body {
 }
 
 .nav-content {
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 100%;
     padding: 0 24px;
     height: 64px;
     display: flex;
-    align-items: center;
+    align-items: left;
     justify-content: space-between;
 }
 
 .nav-brand {
-    display: flex;
+    display:flex;
     align-items: center;
     gap: 12px;
     color: white;
