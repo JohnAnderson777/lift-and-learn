@@ -369,12 +369,12 @@ body {
     padding: 0 24px;
     height: 64px;
     display: flex;
-    align-items: left;
+    align-items: center;
     justify-content: space-between;
 }
 
 .nav-brand {
-    display:flex;
+    display: flex;
     align-items: center;
     gap: 12px;
     color: white;
@@ -754,6 +754,93 @@ body {
     flex-wrap: wrap;
 }
 
+.hero-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 600px;
+    margin: -32px -24px 48px;
+}
+
+.hero-image-side {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.hero-img-stack {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: 4px;
+}
+
+.hero-img {
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    display: block;
+    min-height: 0;
+}
+
+.hero-img-top {
+    flex: 3;
+}
+
+.hero-img-bottom {
+    flex: 2;
+    object-position: center 60%;
+}
+
+.hero-text-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 56px;
+}
+
+.hero-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 13px;
+    font-weight: 600;
+    color: #60a5fa;
+    margin-bottom: 20px;
+}
+
+.hero-text-side h1 {
+    color: white;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 24px;
+}
+
+.hero-text-side p {
+    color: #94a3b8;
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    max-width: 420px;
+}
+
+.hero-cta {
+    width: fit-content;
+    margin-bottom: 32px;
+}
+
+.hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.hero-dot {
+    color: #334155;
+    font-size: 18px;
+}
+
 .btn-lg {
     padding: 16px 32px;
     font-size: 18px;
@@ -841,6 +928,28 @@ body {
 
     .features-section {
         grid-template-columns: 1fr;
+    }
+
+    .hero-split {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        margin: -32px -24px 48px;
+    }
+
+    .hero-image-side {
+        height: 280px;
+    }
+
+    .hero-text-side {
+        padding: 48px 24px;
+    }
+
+    .hero-text-side h1 {
+        font-size: 36px;
+    }
+
+    .hero-text-side p {
+        font-size: 16px;
     }
 
     .nav-user {
