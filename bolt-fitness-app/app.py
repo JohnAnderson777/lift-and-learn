@@ -23,6 +23,13 @@ def get_user_profile(user_id):
 def get_workout_plan(user_id):
     return WorkoutPlan.get_active_by_user_id(user_id)
 
+@app.context_processor
+def inject_nav_profile():
+    nav_profile = None
+    if current_user.is_authenticated:
+        nav_profile = UserProfile.get_by_user_id(current_user.id)
+    return dict(nav_profile=nav_profile)
+
 @app.route('/')
 def index():
     return render_template('home.html')
@@ -45,9 +52,10 @@ def register():
         if user_id:
             user = User.get_by_email(email)
             login_user(user)
-            next_page = session.get('next_after_login', url_for('index'))
-            session.pop('next_after_login', None)
-            return redirect(next_page)
+            next_page = session.pop('next_after_login', None)
+            if next_page:
+                return redirect(next_page)
+            return redirect(url_for('index'))
         else:
             flash('Username or email already exists. Please try different credentials.', 'error')
             return render_template('register.html')
@@ -67,9 +75,10 @@ def login():
 
         if user and user.check_password(password):
             login_user(user)
-            next_page = session.get('next_after_login', url_for('index'))
-            session.pop('next_after_login', None)
-            return redirect(next_page)
+            next_page = session.pop('next_after_login', None)
+            if next_page:
+                return redirect(next_page)
+            return redirect(url_for('index'))
         else:
             flash('Invalid email or password', 'error')
             return render_template('login.html')

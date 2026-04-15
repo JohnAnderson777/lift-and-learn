@@ -3,28 +3,6 @@
 {% block title %}Home - FitPlan Pro{% endblock %}
 
 {% block content %}
-<nav class="navbar">
-    <div class="nav-content">
-        <div class="nav-brand">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M6.5 6.5L17.5 17.5M17.5 6.5L6.5 17.5M14 12h1M9 12h1"></path>
-            </svg>
-            <span>FitPlan Pro</span>
-        </div>
-        <div class="nav-user">
-            {% if current_user.is_authenticated %}
-                <div class="user-info">
-                    <div class="user-name">{{ current_user.username }}</div>
-                </div>
-                <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Logout</a>
-            {% else %}
-                <a href="{{ url_for('login') }}" class="btn btn-secondary btn-sm">Login</a>
-                <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Register</a>
-            {% endif %}
-        </div>
-    </div>
-</nav>
-
 <div class="dashboard-container">
     {% set profile = current_user.id | get_user_profile if current_user.is_authenticated else None %}
     {% set workout_plan = current_user.id | get_workout_plan if current_user.is_authenticated else None %}
