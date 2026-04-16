@@ -7,15 +7,8 @@
     {% set profile = current_user.id | get_user_profile if current_user.is_authenticated else None %}
     {% set workout_plan = current_user.id | get_workout_plan if current_user.is_authenticated else None %}
 
-    {% if current_user.is_authenticated %}
-        {% if not profile %}
-            <div class="hero-section">
-                <h1>Welcome, {{ current_user.username }}!</h1>
-                <p>Ready to transform your fitness journey? Create your personalized workout plan in minutes.</p>
-                <a href="{{ url_for('questionnaire') }}" class="btn btn-primary btn-lg">Find Your Workout Plan</a>
-            </div>
-        {% else %}
-            <div class="stats-grid">
+    {% if current_user.is_authenticated and profile %}
+        <div class="stats-grid">
                 <div class="stat-card">
                     <div class="stat-icon blue">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -159,7 +152,6 @@
                 </div>
             </div>
             {% endif %}
-        {% endif %}
     {% else %}
         <div class="hero-split">
             <div class="hero-text-side">
