@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}FitPlan Pro{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-    <title>{% block title %}Lift N' Learn{% endblock %}</title>
 </head>
 <body>
     {% block navbar %}
@@ -16,7 +15,10 @@
                 <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M6.5 6.5L17.5 17.5M17.5 6.5L6.5 17.5M14 12h1M9 12h1"></path>
                 </svg>
-                <span>Lift N' Learn</span>
+                <span>FitPlan Pro</span>
+            </div>
+            <div class="nav-center">
+                <a href="/#about" class="nav-link-about" onclick="scrollToAbout(event)">About</a>
             </div>
             <div class="nav-user">
                 {% if current_user.is_authenticated %}
@@ -28,10 +30,10 @@
                             <div class="user-name">{{ current_user.username }}</div>
                         {% endif %}
                     </div>
-                    <a href="{{ url_for('logout') }}" class="btn btn-secondary btn-sm">Logout</a>
+                    <a href="{{ url_for('logout') }}" class="nav-btn-outline">Logout</a>
                 {% else %}
-                    <a href="{{ url_for('login') }}" class="btn btn-secondary btn-sm">Login</a>
-                    <a href="{{ url_for('register') }}" class="btn btn-primary btn-sm">Register</a>
+                    <a href="{{ url_for('login') }}" class="nav-btn-outline">Login</a>
+                    <a href="{{ url_for('register') }}" class="nav-btn-solid">Register</a>
                 {% endif %}
             </div>
         </div>
@@ -53,6 +55,15 @@
     {% block content %}{% endblock %}
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    function scrollToAbout(e) {
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+            e.preventDefault();
+            aboutSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+    </script>
     {% block scripts %}{% endblock %}
 </body>
 </html>
