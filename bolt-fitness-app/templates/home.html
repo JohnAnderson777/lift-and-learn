@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Home - FitPlan Pro{% endblock %}
+{% block title %}Home - Lift N' Learn{% endblock %}
 
 {% block content %}
 <div class="dashboard-container">
@@ -156,16 +156,9 @@
         <div class="hero-split">
             <div class="hero-text-side">
                 <div class="hero-eyebrow">Your fitness journey starts here</div>
-                <h1>Build the body you want</h1>
+                <h1>Welcome to Lift N' Learn</h1>
                 <p>Get a personalized workout plan tailored to your goals, fitness level, and schedule — in just a few minutes.</p>
                 <a href="{{ url_for('start_questionnaire') }}" class="btn btn-primary btn-lg hero-cta">Find Your Workout Plan</a>
-                <div class="hero-trust">
-                    <span>Personalized plans</span>
-                    <span class="hero-dot">·</span>
-                    <span>Any fitness level</span>
-                    <span class="hero-dot">·</span>
-                    <span>Free to use</span>
-                </div>
             </div>
             <div class="hero-image-side">
                 <div class="hero-img-stack">
@@ -175,51 +168,15 @@
             </div>
         </div>
 
-        <div class="features-section">
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                    </svg>
-                </div>
-                <h3>Personalized Plans</h3>
-                <p>Get workout routines designed specifically for your fitness level and goals</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                </div>
-                <h3>Flexible Scheduling</h3>
-                <p>Choose how many days per week you want to train and session duration</p>
-            </div>
-
-            <div class="feature-card">
-                <div class="feature-icon">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="9" cy="7" r="4"></circle>
-                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                    </svg>
-                </div>
-                <h3>Multiple Fitness Types</h3>
-                <p>From general fitness to athlete training, muscle building, and calisthenics</p>
-            </div>
-        </div>
     {% endif %}
 
-    <section id="about" class="about-section">
+</div>
+
+<section id="about" class="about-section">
         <div class="about-inner">
             <div class="about-header">
-                <div class="about-eyebrow">Who we are</div>
-                <h2>Built for people who are serious about fitness</h2>
-                <p class="about-lead">Lift N' Learn was created to cut through the noise. No gimmicks, no one-size-fits-all routines — just smart, personalised workout plans built around you.</p>
+                <div class="about-eyebrow">About Us</div>
+                <h2>Built for people who want a guide into fitness</h2>
             </div>
 
             <div class="about-grid">
@@ -232,7 +189,7 @@
                         </svg>
                     </div>
                     <h3>Science-backed programming</h3>
-                    <p>Every plan is structured around proven training principles — progressive overload, recovery, and specificity — so you make real, lasting progress.</p>
+                    <p>Every plan is structured around proven training principles: progressive overload, recovery, and specificity - so you make real, lasting progress.</p>
                 </div>
 
                 <div class="about-card">
@@ -243,7 +200,7 @@
                         </svg>
                     </div>
                     <h3>Fully personalised to you</h3>
-                    <p>Your fitness level, goals, schedule, and available time all shape your plan. Two people never get the same programme — because they shouldn't.</p>
+                    <p>Your fitness level, goals, schedule, and available time all shape your plan. Your schedule and needs are entirely flexible.</p>
                 </div>
 
                 <div class="about-card">
@@ -252,8 +209,8 @@
                             <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                         </svg>
                     </div>
-                    <h3>Any goal, any level</h3>
-                    <p>Whether you're a complete beginner or a seasoned athlete, Lift N' Learn meets you where you are and helps you get where you want to go.</p>
+                    <h3>Any goal, Any level</h3>
+                    <p>Whether you're a complete beginner or a seasoned athlete, Lift N' Learn adapts to you and helps you get into action.</p>
                 </div>
             </div>
 
@@ -263,25 +220,9 @@
                     <p>We believe that everyone deserves access to intelligent training guidance — not just those who can afford a personal trainer. Lift N' Learn democratises expert-level programming so that anyone, anywhere, can train with purpose and confidence.</p>
                     <p>We built this platform because we were tired of generic fitness advice. The right plan, tailored to the right person, changes everything.</p>
                 </div>
-                <div class="about-mission-stats">
-                    <div class="mission-stat">
-                        <div class="mission-stat-number">4+</div>
-                        <div class="mission-stat-label">Fitness types supported</div>
-                    </div>
-                    <div class="mission-stat">
-                        <div class="mission-stat-number">100%</div>
-                        <div class="mission-stat-label">Personalised to you</div>
-                    </div>
-                    <div class="mission-stat">
-                        <div class="mission-stat-number">Free</div>
-                        <div class="mission-stat-label">Always free to use</div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
-
-</div>
 
 <script>
 function showWorkout(index) {
