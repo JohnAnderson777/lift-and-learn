@@ -1,3 +1,400 @@
+def get_exercise_library():
+    return {
+        'Chest': {
+            'icon': 'chest',
+            'color': '#2563eb',
+            'description': 'Build a powerful, well-defined chest with these compound and isolation movements.',
+            'exercises': [
+                {
+                    'name': 'Barbell Bench Press',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Barbell, Bench',
+                    'muscles': 'Pectoralis Major, Triceps, Front Deltoids',
+                    'description': 'The king of chest exercises. Lie flat on a bench, grip the bar slightly wider than shoulder-width and press explosively.',
+                },
+                {
+                    'name': 'Incline Dumbbell Press',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Dumbbells, Incline Bench',
+                    'muscles': 'Upper Pectoralis Major, Front Deltoids, Triceps',
+                    'description': 'Set bench to 30-45 degrees. Targets the upper chest for a fuller, more developed look.',
+                },
+                {
+                    'name': 'Cable Flyes',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine',
+                    'muscles': 'Pectoralis Major (stretch focus)',
+                    'description': 'Constant tension isolation movement. Set cables at shoulder height, lean slightly forward and bring hands together in an arc.',
+                },
+                {
+                    'name': 'Push-ups',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Bodyweight',
+                    'muscles': 'Pectoralis Major, Triceps, Core',
+                    'description': 'The foundational chest exercise. Hands slightly wider than shoulders, body in a straight plank line.',
+                },
+                {
+                    'name': 'Dips',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Parallel Bars or Bench',
+                    'muscles': 'Lower Pectoralis Major, Triceps',
+                    'description': 'Lean forward slightly to emphasize the chest. Lower until upper arms are parallel to the floor.',
+                },
+                {
+                    'name': 'Decline Barbell Press',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Barbell, Decline Bench',
+                    'muscles': 'Lower Pectoralis Major, Triceps',
+                    'description': 'Targets the lower chest for a complete, defined look. Perform on a bench set to 15-30 degrees decline.',
+                },
+                {
+                    'name': 'Pec Deck Machine',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Pec Deck Machine',
+                    'muscles': 'Pectoralis Major',
+                    'description': 'Machine-based isolation. Great for beginners to feel the chest contraction without stabilization demands.',
+                }
+            ]
+        },
+        'Back': {
+            'icon': 'back',
+            'color': '#2563eb',
+            'description': 'Develop a wide, thick back with rows, pull-ups, and deadlifts for raw pulling strength.',
+            'exercises': [
+                {
+                    'name': 'Deadlift',
+                    'difficulty': 'Advanced',
+                    'equipment': 'Barbell',
+                    'muscles': 'Entire Posterior Chain, Lats, Traps, Erectors',
+                    'description': 'The ultimate full-body movement. Hinge at the hips, keep bar close to shins, drive through the floor.',
+                },
+                {
+                    'name': 'Pull-ups',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Pull-up Bar',
+                    'muscles': 'Latissimus Dorsi, Biceps, Rear Deltoids',
+                    'description': 'Best bodyweight back builder. Full hang, pull elbows to ribs and chest to bar.',
+                },
+                {
+                    'name': 'Barbell Bent-Over Row',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Barbell',
+                    'muscles': 'Middle Back, Lats, Rhomboids, Biceps',
+                    'description': 'Hinge forward 45 degrees, pull bar to lower chest/upper abdomen. Essential mass builder.',
+                },
+                {
+                    'name': 'Lat Pulldowns',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine',
+                    'muscles': 'Latissimus Dorsi, Biceps',
+                    'description': 'Great pull-up alternative. Pull bar to upper chest while leaning back slightly.',
+                },
+                {
+                    'name': 'Seated Cable Row',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine',
+                    'muscles': 'Middle Back, Rhomboids, Lats',
+                    'description': 'Sit tall, pull handle to abdomen with elbows close to sides. Great for mid-back thickness.',
+                },
+                {
+                    'name': 'Face Pulls',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine, Rope',
+                    'muscles': 'Rear Deltoids, Rhomboids, External Rotators',
+                    'description': 'Pull rope to face with elbows high. Critical for shoulder health and upper back development.',
+                },
+                {
+                    'name': 'T-Bar Row',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'T-Bar Row Machine or Landmine',
+                    'muscles': 'Middle Back, Lats, Rhomboids',
+                    'description': 'Straddle the bar, hinge at hips and row. Great for building back thickness.',
+                }
+            ]
+        },
+        'Biceps': {
+            'icon': 'biceps',
+            'color': '#2563eb',
+            'description': 'Build impressive arm peaks with a variety of curl variations targeting all parts of the bicep.',
+            'exercises': [
+                {
+                    'name': 'Barbell Curl',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Barbell',
+                    'muscles': 'Biceps Brachii (long and short head)',
+                    'description': 'The classic mass builder. Supinated grip, curl bar to chest, lower with control.',
+                },
+                {
+                    'name': 'Incline Dumbbell Curl',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Dumbbells, Incline Bench',
+                    'muscles': 'Long Head of Biceps (peak)',
+                    'description': 'Set bench to 45 degrees. Arms hang straight down for maximum stretch and long head activation.',
+                },
+                {
+                    'name': 'Hammer Curl',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Dumbbells',
+                    'muscles': 'Brachialis, Brachioradialis, Biceps',
+                    'description': 'Neutral grip curl (thumbs pointing up). Builds the brachialis which pushes the bicep peak up.',
+                },
+                {
+                    'name': 'Concentration Curl',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Dumbbell',
+                    'muscles': 'Biceps Brachii (short head, peak)',
+                    'description': 'Seated, brace upper arm against inner thigh. Complete isolation for maximum contraction.',
+                },
+                {
+                    'name': 'Preacher Curl',
+                    'difficulty': 'Beginner',
+                    'equipment': 'EZ Bar, Preacher Bench',
+                    'muscles': 'Biceps Brachii (short head)',
+                    'description': 'Arm rests on angled pad to eliminate cheating. Great for developing the lower bicep.',
+                },
+                {
+                    'name': 'Cable Curl',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine',
+                    'muscles': 'Biceps Brachii',
+                    'description': 'Constant tension throughout the movement. Cable keeps resistance even when dumbbells would not.',
+                },
+                {
+                    'name': 'Chin-ups',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Pull-up Bar',
+                    'muscles': 'Biceps, Latissimus Dorsi',
+                    'description': 'Underhand grip pull-up. Heavy compound movement that builds both lats and biceps simultaneously.',
+                }
+            ]
+        },
+        'Triceps': {
+            'icon': 'triceps',
+            'color': '#2563eb',
+            'description': 'Triceps make up 2/3 of upper arm mass. Target all three heads for complete arm development.',
+            'exercises': [
+                {
+                    'name': 'Close-Grip Bench Press',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Barbell, Bench',
+                    'muscles': 'Triceps (all heads), Chest, Shoulders',
+                    'description': 'Hands shoulder-width apart on barbell. Best compound tricep exercise for raw mass.',
+                },
+                {
+                    'name': 'Tricep Pushdowns',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine',
+                    'muscles': 'Triceps (lateral head)',
+                    'description': 'Push cable attachment down until arms fully extended. Classic cable isolation exercise.',
+                },
+                {
+                    'name': 'Skull Crushers',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'EZ Bar or Barbell, Bench',
+                    'muscles': 'Triceps (long head)',
+                    'description': 'Lower bar to forehead while lying on bench, then extend. Excellent long head exercise.',
+                },
+                {
+                    'name': 'Overhead Tricep Extension',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Dumbbell or Cable',
+                    'muscles': 'Triceps (long head)',
+                    'description': 'Arms overhead maximally stretches the long head. Crucial for complete development.',
+                },
+                {
+                    'name': 'Diamond Push-ups',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Bodyweight',
+                    'muscles': 'Triceps, Inner Chest',
+                    'description': 'Form diamond shape with hands under chest. Highly effective bodyweight tricep builder.',
+                },
+                {
+                    'name': 'Dips (Tricep Focused)',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Parallel Bars',
+                    'muscles': 'Triceps, Lower Chest',
+                    'description': 'Keep torso upright to focus on triceps rather than chest. Powerful mass builder.',
+                },
+                {
+                    'name': 'Tricep Kickbacks',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Dumbbells',
+                    'muscles': 'Triceps (lateral head)',
+                    'description': 'Hinge forward, upper arm parallel to floor. Extend arm back until straight. Great isolation.',
+                }
+            ]
+        },
+        'Shoulders': {
+            'icon': 'shoulders',
+            'color': '#2563eb',
+            'description': 'Sculpt broad, capped shoulders by targeting all three deltoid heads for a complete look.',
+            'exercises': [
+                {
+                    'name': 'Overhead Press (Barbell)',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Barbell',
+                    'muscles': 'All Deltoid Heads, Triceps, Traps',
+                    'description': 'The king of shoulder exercises. Press bar from front rack position overhead. Builds overall shoulder mass.',
+                },
+                {
+                    'name': 'Dumbbell Lateral Raises',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Dumbbells',
+                    'muscles': 'Medial (Side) Deltoid',
+                    'description': 'Raise arms to sides to shoulder height. Essential for creating shoulder width and that capped look.',
+                },
+                {
+                    'name': 'Arnold Press',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Dumbbells',
+                    'muscles': 'All Deltoid Heads (full rotation)',
+                    'description': 'Start with palms facing you, rotate outward as you press up. Named after Arnold Schwarzenegger.',
+                },
+                {
+                    'name': 'Front Raises',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Dumbbells or Barbell',
+                    'muscles': 'Anterior (Front) Deltoid',
+                    'description': 'Raise arms directly in front to shoulder height. Targets the front delts for complete development.',
+                },
+                {
+                    'name': 'Rear Delt Flyes',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Dumbbells or Cable',
+                    'muscles': 'Posterior (Rear) Deltoid, Rhomboids',
+                    'description': 'Hinge forward or use cable. Raise arms out to sides. Critical for balanced shoulder development.',
+                },
+                {
+                    'name': 'Upright Rows',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Barbell or Dumbbells',
+                    'muscles': 'Medial Deltoid, Traps, Biceps',
+                    'description': 'Pull bar straight up to chin with elbows leading. Builds shoulder and trap thickness.',
+                },
+                {
+                    'name': 'Face Pulls',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine, Rope',
+                    'muscles': 'Rear Deltoids, External Rotators',
+                    'description': 'Pull rope to face with elbows flared high. Essential for shoulder health and rear delt development.',
+                }
+            ]
+        },
+        'Legs': {
+            'icon': 'legs',
+            'color': '#2563eb',
+            'description': 'Build powerful legs with squats, deadlifts, and targeted isolation work for quads, hamstrings, and calves.',
+            'exercises': [
+                {
+                    'name': 'Barbell Back Squat',
+                    'difficulty': 'Advanced',
+                    'equipment': 'Barbell, Squat Rack',
+                    'muscles': 'Quadriceps, Glutes, Hamstrings, Core',
+                    'description': 'The king of all exercises. Bar on upper traps, break at hips and knees simultaneously, squat to parallel or below.',
+                },
+                {
+                    'name': 'Romanian Deadlift',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Barbell or Dumbbells',
+                    'muscles': 'Hamstrings, Glutes, Erector Spinae',
+                    'description': 'Hip hinge movement. Push hips back as bar slides down legs, feel hamstring stretch.',
+                },
+                {
+                    'name': 'Leg Press',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Leg Press Machine',
+                    'muscles': 'Quadriceps, Glutes, Hamstrings',
+                    'description': 'Place feet on platform, lower sled until 90 degrees, press back up. Great for quad overload.',
+                },
+                {
+                    'name': 'Walking Lunges',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Bodyweight or Dumbbells',
+                    'muscles': 'Quadriceps, Glutes, Hamstrings, Balance',
+                    'description': 'Step forward, lower back knee toward floor, then step through. Excellent unilateral developer.',
+                },
+                {
+                    'name': 'Leg Curls',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Leg Curl Machine',
+                    'muscles': 'Hamstrings',
+                    'description': 'Lying or seated, curl weight by bending knees. Essential isolation for hamstring development.',
+                },
+                {
+                    'name': 'Bulgarian Split Squat',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Dumbbells or Barbell, Bench',
+                    'muscles': 'Quadriceps, Glutes, Hamstrings',
+                    'description': 'Rear foot elevated on bench, single leg squat down. Brutal unilateral leg exercise.',
+                },
+                {
+                    'name': 'Standing Calf Raises',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Machine or Step',
+                    'muscles': 'Gastrocnemius, Soleus',
+                    'description': 'Rise up on toes, fully contract calf, lower below platform for full stretch.',
+                }
+            ]
+        },
+        'Abs': {
+            'icon': 'abs',
+            'color': '#2563eb',
+            'description': 'Carve a strong core with flexion, rotation, and anti-rotation exercises for complete abdominal development.',
+            'exercises': [
+                {
+                    'name': 'Plank',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Bodyweight',
+                    'muscles': 'Entire Core, Transverse Abdominis',
+                    'description': 'Forearms on floor, body in straight line. The ultimate anti-extension core exercise.',
+                },
+                {
+                    'name': 'Hanging Leg Raises',
+                    'difficulty': 'Intermediate',
+                    'equipment': 'Pull-up Bar',
+                    'muscles': 'Lower Abs, Hip Flexors',
+                    'description': 'Hang from bar, raise legs to 90 degrees or higher. Excellent lower ab developer.',
+                },
+                {
+                    'name': 'Cable Crunches',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Cable Machine, Rope',
+                    'muscles': 'Rectus Abdominis (upper)',
+                    'description': 'Kneel facing cable, crunch down with rope at sides of head. Best weighted ab exercise.',
+                },
+                {
+                    'name': 'Russian Twists',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Bodyweight or Weight Plate',
+                    'muscles': 'Obliques, Rectus Abdominis',
+                    'description': 'Seated, lean back slightly, rotate torso side to side. Add weight for more intensity.',
+                },
+                {
+                    'name': 'Ab Wheel Rollout',
+                    'difficulty': 'Advanced',
+                    'equipment': 'Ab Wheel',
+                    'muscles': 'Entire Core, Lats, Shoulders',
+                    'description': 'Kneel with wheel, roll forward until almost flat, pull back using abs. Extremely challenging.',
+                },
+                {
+                    'name': 'Bicycle Crunches',
+                    'difficulty': 'Beginner',
+                    'equipment': 'Bodyweight',
+                    'muscles': 'Obliques, Rectus Abdominis',
+                    'description': 'Alternate elbow to opposite knee while cycling legs. One of the most effective ab exercises.',
+                },
+                {
+                    'name': 'Dragon Flag',
+                    'difficulty': 'Advanced',
+                    'equipment': 'Bench',
+                    'muscles': 'Entire Core, Hip Flexors, Lats',
+                    'description': 'Hold bench behind head, raise legs and torso like a flag, lower with control. Bruce Lee made it famous.',
+                }
+            ]
+        }
+    }
+
+
 def generate_workout_plan(params):
     fitness_type = params['fitness_type']
     fitness_level = params['fitness_level']

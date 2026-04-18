@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from database import init_db, User, UserProfile, WorkoutPlan
-from workout_generator import generate_workout_plan
+from workout_generator import generate_workout_plan, get_exercise_library
 import os
 
 app = Flask(__name__)
@@ -145,6 +145,11 @@ def questionnaire():
             flash('Error creating profile. Please try again.', 'error')
 
     return render_template('questionnaire.html')
+
+@app.route('/exercise-library')
+def exercise_library():
+    library = get_exercise_library()
+    return render_template('exercise_library.html', library=library)
 
 if __name__ == '__main__':
     init_db()

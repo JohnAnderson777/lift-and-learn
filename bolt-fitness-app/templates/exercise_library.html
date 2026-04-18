@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+
+{% block title %}Exercise Library - Lift N' Learn{% endblock %}
+
+{% block content %}
+<div class="library-page">
+    <div class="library-hero">
+        <div class="library-hero-inner">
+            <h1 class="library-hero-title">Exercise Library</h1>
+            <p class="library-hero-sub">Build your perfect workout and spice up your workouts with our library of exercises, sorted and filtered by each muscle group.</p>
+        </div>
+    </div>
+
+    <div class="library-container">
+        <div class="muscle-grid">
+            {% for group, data in library.items() %}
+            <div class="muscle-card" data-group="{{ group }}" onclick="selectMuscleGroup('{{ group }}')" style="--accent: {{ data.color }}">
+                <div class="muscle-card-info">
+                    <h3>{{ group }}</h3>
+                    <span class="muscle-count">{{ data.exercises | length }} exercises</span>
+                </div>
+                <div class="muscle-card-arrow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="exercises-panel" id="exercisesPanel">
+            <div class="exercises-empty" id="emptyState">
+                <h3>Select a Muscle Group</h3>
+                <p>Choose any muscle group from the left to browse exercises.</p>
+            </div>
+
+            {% for group, data in library.items() %}
+            <div class="exercises-content" id="group-{{ group }}" style="display:none;">
+                <div class="exercises-header" style="--accent: {{ data.color }}">
+                    <div class="exercises-header-left">
+                        <div>
+                            <h2>{{ group }}</h2>
+                            <p>{{ data.description }}</p>
+                        </div>
+                    </div>
+                    <div class="exercises-count-badge" style="background: {{ data.color }}15; color: {{ data.color }}; border: 1px solid {{ data.color }}30;">
+                        {{ data.exercises | length }} Exercises
+                    </div>
+                </div>
+
+                <div class="difficulty-filter">
+                    <button class="diff-btn active" onclick="filterDifficulty(this, 'all')">All</button>
+                    <button class="diff-btn" onclick="filterDifficulty(this, 'Beginner')">Beginner</button>
+                    <button class="diff-btn" onclick="filterDifficulty(this, 'Intermediate')">Intermediate</button>
+                    <button class="diff-btn" onclick="filterDifficulty(this, 'Advanced')">Advanced</button>
+                </div>
+
+                <div class="exercise-list">
+                    {% for exercise in data.exercises %}
+                    <div class="exercise-item" data-difficulty="{{ exercise.difficulty }}" onclick="toggleExercise(this)">
+                        <div class="exercise-item-header">
+                            <div class="exercise-item-left">
+                                <div class="exercise-diff-dot" style="background: {% if exercise.difficulty == 'Beginner' %}#10b981{% elif exercise.difficulty == 'Intermediate' %}#f59e0b{% else %}#ef4444{% endif %};"></div>
+                                <div>
+                                    <h4>{{ exercise.name }}</h4>
+                                    <div class="exercise-meta-inline">
+                                        <span class="meta-tag meta-equip">
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4v6M18 14v6M6 20H3a1 1 0 0 1-1-1v-2M18 4h3a1 1 0 0 1 1 1v2M8 4h8M8 20h8M3 10h18"/></svg>
+                                            {{ exercise.equipment }}
+                                        </span>
+                                        <span class="diff-badge diff-{{ exercise.difficulty | lower }}">{{ exercise.difficulty }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="exercise-toggle-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                            </div>
+                        </div>
+                        <div class="exercise-item-body">
+                            <div class="body-section">
+                                <h5>Description</h5>
+                                <p>{{ exercise.description }}</p>
+                            </div>
+                            <div class="body-section">
+                                <h5>Primary Muscles</h5>
+                                <p class="muscles-text">{{ exercise.muscles }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let activeGroup = null;
+
+    function selectMuscleGroup(group) {
+        document.querySelectorAll('.muscle-card').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.exercises-content').forEach(c => c.style.display = 'none');
+        document.getElementById('emptyState').style.display = 'none';
+
+        const card = document.querySelector(`.muscle-card[data-group="${group}"]`);
+        card.classList.add('active');
+
+        const content = document.getElementById('group-' + group);
+        content.style.display = 'block';
+        activeGroup = group;
+
+        resetFilters(content);
+
+        if (window.innerWidth <= 900) {
+            document.getElementById('exercisesPanel').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+
+    function resetFilters(container) {
+        container.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+        container.querySelector('.diff-btn').classList.add('active');
+        container.querySelectorAll('.exercise-item').forEach(item => item.style.display = 'block');
+    }
+
+    function filterDifficulty(btn, level) {
+        const panel = btn.closest('.exercises-content');
+        panel.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        panel.querySelectorAll('.exercise-item').forEach(item => {
+            if (level === 'all' || item.dataset.difficulty === level) {
+                item.style.display = 'block';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+
+    function toggleExercise(item) {
+        const isOpen = item.classList.contains('open');
+        item.closest('.exercise-list').querySelectorAll('.exercise-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) {
+            item.classList.add('open');
+        }
+    }
+</script>
+{% endblock %}

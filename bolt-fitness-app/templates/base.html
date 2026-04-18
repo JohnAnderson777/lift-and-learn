@@ -12,15 +12,18 @@
     <nav class="navbar">
         <div class="nav-content">
             <div class="nav-brand">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6.5 6.5L17.5 17.5M17.5 6.5L6.5 17.5M14 12h1M9 12h1"></path>
-                </svg>
-                <span>Lift N' Learn</span>
+                <img src="{{ url_for('static', filename='image copy.png') }}" alt="Dumbbell" class="nav-brand-icon">
+                <div class="nav-brand-text">
+                    <span class="nav-brand-title">Lift N' Learn</span>
+                    <span class="nav-brand-slogan">Planning for Progress</span>
+                </div>
             </div>
             <div class="nav-center">
                 <a href="/#about" class="nav-link-about" onclick="scrollToAbout(event)">About</a>
+                <a href="{{ url_for('exercise_library') }}" class="nav-link-about {% if request.endpoint == 'exercise_library' %}nav-link-active{% endif %}">Exercise Library</a>
             </div>
             <div class="nav-user">
+                
                 {% if current_user.is_authenticated %}
                     <div class="user-info">
                         {% if nav_profile %}
