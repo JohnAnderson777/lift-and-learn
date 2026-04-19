@@ -23,22 +23,26 @@
                 <div class="form-group">
                     <label for="full_name">Full Name</label>
                     <input type="text" id="full_name" name="full_name" required>
+                    <span class="field-error-msg" id="full_name-error" style="display:none;"></span>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
                         <label for="age">Age</label>
                         <input type="number" id="age" name="age" min="1" max="120" required>
+                        <span class="field-error-msg" id="age-error" style="display:none;"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="weight">Weight (kg)</label>
-                        <input type="number" id="weight" name="weight" step="0.1" required>
+                        <input type="number" id="weight" name="weight" step="0.1" min="1" max="600" required>
+                        <span class="field-error-msg" id="weight-error" style="display:none;"></span>
                     </div>
 
                     <div class="form-group">
                         <label for="height">Height (cm)</label>
-                        <input type="number" id="height" name="height" step="0.1" required>
+                        <input type="number" id="height" name="height" step="0.1" min="1" max="300" required>
+                        <span class="field-error-msg" id="height-error" style="display:none;"></span>
                     </div>
                 </div>
             </div>
@@ -149,6 +153,75 @@
 let currentStep = 1;
 const totalSteps = 3;
 
+function showError(inputId, message) {
+    const input = document.getElementById(inputId);
+    const error = document.getElementById(inputId + '-error');
+    input.classList.add('input-error');
+    error.textContent = message;
+    error.style.display = 'block';
+}
+
+function clearError(inputId) {
+    const input = document.getElementById(inputId);
+    const error = document.getElementById(inputId + '-error');
+    input.classList.remove('input-error');
+    error.textContent = '';
+    error.style.display = 'none';
+}
+
+function validateStep1() {
+    let valid = true;
+
+    const fullName = document.getElementById('full_name').value.trim();
+    clearError('full_name');
+    if (!fullName) {
+        showError('full_name', 'Full name is required.');
+        valid = false;
+    } else if (!/^[a-zA-Z\s'-]+$/.test(fullName)) {
+        showError('full_name', 'Full name can only contain letters.');
+        valid = false;
+    }
+
+    const age = document.getElementById('age').value;
+    clearError('age');
+    if (!age) {
+        showError('age', 'Age is required.');
+        valid = false;
+    } else if (!Number.isInteger(Number(age)) || Number(age) < 1 || Number(age) > 120) {
+        showError('age', 'Age must be a whole number between 1 and 120.');
+        valid = false;
+    }
+
+    const weight = parseFloat(document.getElementById('weight').value);
+    clearError('weight');
+    if (!document.getElementById('weight').value) {
+        showError('weight', 'Weight is required.');
+        valid = false;
+    } else if (isNaN(weight) || weight <= 0 || weight > 600) {
+        showError('weight', 'Weight must be between 1 and 600 kg.');
+        valid = false;
+    }
+
+    const height = parseFloat(document.getElementById('height').value);
+    clearError('height');
+    if (!document.getElementById('height').value) {
+        showError('height', 'Height is required.');
+        valid = false;
+    } else if (isNaN(height) || height <= 0 || height > 300) {
+        showError('height', 'Height must be between 1 and 300 cm.');
+        valid = false;
+    }
+
+    return valid;
+}
+
+['full_name', 'age', 'weight', 'height'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+        el.addEventListener('input', () => clearError(id));
+    }
+});
+
 function updateStep(step) {
     document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.progress-step').forEach(el => el.classList.remove('active'));
@@ -168,6 +241,7 @@ function updateStep(step) {
 }
 
 document.getElementById('btn-next').addEventListener('click', () => {
+    if (currentStep === 1 && !validateStep1()) return;
     if (currentStep < totalSteps) {
         currentStep++;
         updateStep(currentStep);

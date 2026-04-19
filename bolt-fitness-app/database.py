@@ -137,3 +137,30 @@ class WorkoutPlan:
             plan_dict['plan_data'] = json.loads(plan_dict['plan_data'])
             return plan_dict
         return None
+
+    @staticmethod
+    def delete_by_user_id(user_id):
+        conn = get_db()
+        try:
+            conn.execute('DELETE FROM workout_plans WHERE user_id = ?', (user_id,))
+            conn.commit()
+            conn.close()
+            return True
+        except Exception as e:
+            conn.close()
+            print(f"Error deleting workout plans: {e}")
+            return False
+
+class UserProfileDeleter:
+    @staticmethod
+    def delete_by_user_id(user_id):
+        conn = get_db()
+        try:
+            conn.execute('DELETE FROM user_profiles WHERE user_id = ?', (user_id,))
+            conn.commit()
+            conn.close()
+            return True
+        except Exception as e:
+            conn.close()
+            print(f"Error deleting user profile: {e}")
+            return False

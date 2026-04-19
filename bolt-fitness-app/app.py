@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
-from database import init_db, User, UserProfile, WorkoutPlan
+from database import init_db, User, UserProfile, WorkoutPlan, UserProfileDeleter
 from workout_generator import generate_workout_plan, get_exercise_library
 import os
 
@@ -145,6 +145,14 @@ def questionnaire():
             flash('Error creating profile. Please try again.', 'error')
 
     return render_template('questionnaire.html')
+
+@app.route('/delete-plan', methods=['POST'])
+@login_required
+def delete_plan():
+    WorkoutPlan.delete_by_user_id(current_user.id)
+    UserProfileDeleter.delete_by_user_id(current_user.id)
+    flash('Your workout plan has been deleted.', 'success')
+    return redirect(url_for('index'))
 
 @app.route('/exercise-library')
 def exercise_library():
