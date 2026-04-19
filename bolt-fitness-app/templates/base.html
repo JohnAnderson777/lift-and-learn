@@ -18,12 +18,10 @@
                     <span class="nav-brand-slogan">Planning for Progress</span>
                 </div>
             </div>
-            <div class="nav-center">
+            <div class="nav-user">
                 <a href="/#about" class="nav-link-about" onclick="scrollToAbout(event)">About</a>
                 <a href="{{ url_for('exercise_library') }}" class="nav-link-about {% if request.endpoint == 'exercise_library' %}nav-link-active{% endif %}">Exercise Library</a>
-            </div>
-            <div class="nav-user">
-                
+                <div class="nav-divider"></div>
                 {% if current_user.is_authenticated %}
                     <div class="user-info">
                         {% if nav_profile %}
@@ -35,7 +33,7 @@
                     </div>
                     <a href="{{ url_for('logout') }}" class="nav-btn-outline">Logout</a>
                 {% else %}
-                    <a href="{{ url_for('login') }}" class="nav-btn-outline">Login</a>
+                    <a href="{{ url_for('login') }}" class="nav-btn-solid">Login</a>
                     <a href="{{ url_for('register') }}" class="nav-btn-solid">Register</a>
                 {% endif %}
             </div>

@@ -74,30 +74,40 @@ body {
     margin-bottom: 30px;
 }
 
-.logo {
-    background: #2563eb;
-    width: 60px;
-    height: 60px;
-    border-radius: 12px;
-    display: inline-flex;
+.auth-brand {
+    display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    gap: 12px;
+    margin-bottom: 4px;
 }
 
-.logo svg {
-    color: white;
+.auth-brand-icon {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
 }
 
-.auth-header h1 {
-    font-size: 28px;
+.auth-brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.auth-brand-title {
+    font-size: 24px;
+    font-weight: 700;
     color: #0f172a;
-    margin-bottom: 8px;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
 }
 
-.auth-header p {
+.auth-brand-slogan {
+    font-size: 12px;
     color: #64748b;
-    font-size: 14px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    margin-top: 2px;
 }
 
 .auth-tabs {
@@ -446,6 +456,13 @@ body {
     display: flex;
     align-items: center;
     gap: 16px;
+}
+
+.nav-divider {
+    width: 1px;
+    height: 24px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 4px;
 }
 
 .user-info {
