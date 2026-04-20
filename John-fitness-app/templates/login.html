@@ -1,17 +1,20 @@
-<!-- 
-{%endblock%}{% extends "base.html" %}
+{% extends "base.html" %}
+
+{% block title %}Login - Lift N' Learn{% endblock %}
+
+{% block navbar %}{% endblock %}
 
 {% block content %}
 <div class="auth-container">
     <div class="auth-card">
         <div class="auth-header">
-            <div class="logo">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M6.5 6.5L17.5 17.5M17.5 6.5L6.5 17.5M14 12h1M9 12h1"></path>
-                </svg>
+            <div class="auth-brand">
+                <img src="{{ url_for('static', filename='logo image.png') }}" alt="Dumbbell" class="auth-brand-icon">
+                <div class="auth-brand-text">
+                    <span class="auth-brand-title">Lift N' Learn</span>
+                    <span class="auth-brand-slogan">Planning for Progress</span>
+                </div>
             </div>
-            <h1>FitPlan Pro</h1>
-            <p>Your personalized workout companion</p>
         </div>
 
         <div class="auth-tabs">
@@ -22,16 +25,16 @@
         <form method="POST" class="auth-form">
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                <input type="email" id="email" name="email" required>
             </div>
 
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" placeholder="••••••••" required>
+                <input type="password" id="password" name="password" required>
             </div>
 
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
     </div>
 </div>
-{% endblock %} -->
+{% endblock %}

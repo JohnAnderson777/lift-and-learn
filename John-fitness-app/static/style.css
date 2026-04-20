@@ -1091,7 +1091,7 @@ body {
 .hero-eyebrow {
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     color: #2563eb;
     margin-bottom: 20px;
@@ -1099,7 +1099,7 @@ body {
 
 .hero-text-side h1 {
     color: #0f172a;
-    font-size: 52px;
+    font-size: 48px;
     font-weight: 800;
     line-height: 1.15;
     margin-bottom: 24px;
@@ -1228,8 +1228,8 @@ body {
 
 .about-eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-size: 13px;
+    letter-spacing: 0.09em;
+    font-size: 24px;
     font-weight: 600;
     color: #60a5fa;
     margin-bottom: 20px;

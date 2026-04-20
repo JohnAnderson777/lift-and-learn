@@ -395,6 +395,17 @@ def get_exercise_library():
     }
 
 
+def extend_workouts_to_days(workouts, days):
+    extended = []
+    base_count = len(workouts)
+    for i in range(days):
+        source = workouts[i % base_count]
+        workout = dict(source)
+        workout['day'] = f'Day {i + 1}'
+        extended.append(workout)
+    return extended
+
+
 def generate_workout_plan(params):
     fitness_type = params['fitness_type']
     fitness_level = params['fitness_level']
@@ -458,7 +469,7 @@ def generate_general_fitness_plan(level, days):
         'description': f'A well-rounded general fitness program designed for {level} level. This plan combines strength training, cardiovascular exercise, and flexibility work to improve overall health and fitness.',
         'duration': '4-8 weeks',
         'frequency': f'{days} days per week',
-        'workouts': workouts[:min(days, 3)],
+        'workouts': extend_workouts_to_days(workouts, days),
         'nutrition_tips': [
             'Maintain a balanced diet with adequate protein (1.2-1.6g per kg bodyweight)',
             'Stay hydrated - drink at least 2-3 liters of water daily',
@@ -528,7 +539,7 @@ def generate_athlete_plan(level, days):
         'description': f'High-performance athletic training program for {level} athletes. Focuses on power, speed, agility, and sport-specific conditioning to enhance athletic performance.',
         'duration': '6-12 weeks',
         'frequency': f'{days} days per week',
-        'workouts': workouts[:min(days, 4)],
+        'workouts': extend_workouts_to_days(workouts, days),
         'nutrition_tips': [
             'High protein intake - 1.6-2.2g per kg bodyweight for recovery and performance',
             'Strategic carb timing around training sessions',
@@ -603,7 +614,7 @@ def generate_muscle_strength_plan(level, days):
         'description': f'Comprehensive muscle building and strength training program for {level} lifters. Focuses on progressive overload, compound movements, and targeted muscle group training for maximum hypertrophy.',
         'duration': '8-12 weeks',
         'frequency': f'{days} days per week',
-        'workouts': workouts[:min(days, 4)],
+        'workouts': extend_workouts_to_days(workouts, days),
         'nutrition_tips': [
             'Caloric surplus of 200-500 calories above maintenance for muscle growth',
             'High protein - 1.8-2.2g per kg bodyweight spread across 4-6 meals',
@@ -676,7 +687,7 @@ def generate_calisthenics_plan(level, days):
         'description': f'Progressive calisthenics training program for {level} practitioners. Master bodyweight control, build functional strength, and work towards advanced skills using only your body.',
         'duration': '8-16 weeks',
         'frequency': f'{days} days per week',
-        'workouts': workouts[:min(days, 4)],
+        'workouts': extend_workouts_to_days(workouts, days),
         'nutrition_tips': [
             'Maintain lean body composition for optimal bodyweight movement',
             'Adequate protein - 1.6-2.0g per kg bodyweight for muscle maintenance and growth',
