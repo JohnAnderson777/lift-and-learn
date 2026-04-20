@@ -430,7 +430,7 @@ def generate_general_fitness_plan(level, days):
             'warmup': ['5 min light cardio', 'Dynamic stretching', 'Arm circles and leg swings'],
             'exercises': [
                 {'name': 'Squats', 'sets': 3 if level == 'beginner' else 4, 'reps': '10-12' if level == 'beginner' else '12-15', 'rest': '60-90s'},
-                {'name': 'Push-ups', 'sets': 3, 'reps': '8-10' if level == 'beginner' else '12-15', 'rest': '60s', 'notes': 'Modify on knees if needed'},
+                {'name': 'Push-ups', 'sets': 3, 'reps': '8-10' if level == 'beginner' else '12-15', 'rest': '60s'},
                 {'name': 'Dumbbell Rows', 'sets': 3, 'reps': '10-12', 'rest': '60s'},
                 {'name': 'Lunges', 'sets': 3, 'reps': '10 each leg', 'rest': '60s'},
                 {'name': 'Plank', 'sets': 3, 'reps': '20-30s' if level == 'beginner' else '30-45s', 'rest': '45s'},
@@ -488,7 +488,7 @@ def generate_athlete_plan(level, days):
             'warmup': ['Dynamic warmup - 10 min', 'Sport-specific movements', 'Activation drills'],
             'exercises': [
                 {'name': 'Box Jumps', 'sets': 4, 'reps': '6-8' if level == 'beginner' else '8-10', 'rest': '90s'},
-                {'name': 'Power Cleans', 'sets': 4, 'reps': '5-6', 'rest': '2-3 min', 'notes': 'Focus on explosive movement'},
+                {'name': 'Power Cleans', 'sets': 4, 'reps': '5-6', 'rest': '2-3 min'},
                 {'name': 'Squat Jumps', 'sets': 4, 'reps': '8-10', 'rest': '90s'},
                 {'name': 'Medicine Ball Slams', 'sets': 3, 'reps': '10-12', 'rest': '60s'},
                 {'name': 'Lateral Bounds', 'sets': 3, 'reps': '8 each side', 'rest': '60s'},
@@ -500,7 +500,7 @@ def generate_athlete_plan(level, days):
             'focus': 'Speed & Agility',
             'warmup': ['Sprint drills', 'Ladder drills', 'Cone drills setup'],
             'exercises': [
-                {'name': 'Sprint Intervals', 'sets': 6, 'reps': '30s sprint / 90s rest', 'rest': 'active', 'notes': '80-90% max effort'},
+                {'name': 'Sprint Intervals', 'sets': 6, 'reps': '30s sprint / 90s rest', 'rest': 'active'},
                 {'name': 'Shuttle Runs', 'sets': 5, 'reps': '30s', 'rest': '60s'},
                 {'name': 'Agility Ladder Drills', 'sets': 4, 'reps': '45s', 'rest': '45s'},
                 {'name': 'Cone Drills', 'sets': 4, 'reps': '8-10 changes', 'rest': '60s'},
@@ -513,7 +513,7 @@ def generate_athlete_plan(level, days):
             'focus': 'Strength & Conditioning',
             'warmup': ['General warmup', 'Movement prep', 'Core activation'],
             'exercises': [
-                {'name': 'Back Squats', 'sets': 4, 'reps': '6-8', 'rest': '2-3 min', 'notes': 'Heavy weight, proper form'},
+                {'name': 'Back Squats', 'sets': 4, 'reps': '6-8', 'rest': '2-3 min'},
                 {'name': 'Deadlifts', 'sets': 4, 'reps': '6-8', 'rest': '2-3 min'},
                 {'name': 'Bench Press', 'sets': 4, 'reps': '8-10', 'rest': '90s'},
                 {'name': 'Pull-ups', 'sets': 3, 'reps': '8-12', 'rest': '90s'},
@@ -526,9 +526,9 @@ def generate_athlete_plan(level, days):
             'focus': 'Endurance & Recovery',
             'warmup': ['Light cardio', 'Dynamic stretches'],
             'exercises': [
-                {'name': 'Steady State Cardio', 'sets': 1, 'reps': '20-30 min', 'rest': 'N/A', 'notes': 'Moderate intensity, 60-70% max HR'},
+                {'name': 'Steady State Cardio', 'sets': 1, 'reps': '20-30 min', 'rest': 'N/A'},
                 {'name': 'Core Circuit', 'sets': 3, 'reps': '10 exercises x 30s', 'rest': '60s between sets'},
-                {'name': 'Mobility Work', 'sets': 1, 'reps': '15 min', 'rest': 'N/A', 'notes': 'Focus on tight areas'},
+                {'name': 'Mobility Work', 'sets': 1, 'reps': '15 min', 'rest': 'N/A'},
                 {'name': 'Foam Rolling', 'sets': 1, 'reps': '10 min', 'rest': 'N/A'},
             ],
             'cooldown': ['Gentle stretching', 'Deep breathing', 'Meditation - 5 min']
@@ -557,7 +557,7 @@ def generate_muscle_strength_plan(level, days):
             'focus': 'Chest & Triceps',
             'warmup': ['5 min light cardio', 'Shoulder mobility', 'Light chest stretches'],
             'exercises': [
-                {'name': 'Barbell Bench Press', 'sets': 4, 'reps': '8-10' if level == 'beginner' else '6-8', 'rest': '2-3 min', 'notes': 'Progressive overload'},
+                {'name': 'Barbell Bench Press', 'sets': 4, 'reps': '8-10' if level == 'beginner' else '6-8', 'rest': '2-3 min'},
                 {'name': 'Incline Dumbbell Press', 'sets': 4, 'reps': '8-10', 'rest': '90s'},
                 {'name': 'Cable Flyes', 'sets': 3, 'reps': '10-12', 'rest': '60s'},
                 {'name': 'Dips', 'sets': 3, 'reps': '8-10' if level == 'beginner' else '10-12', 'rest': '90s'},
@@ -571,7 +571,7 @@ def generate_muscle_strength_plan(level, days):
             'focus': 'Back & Biceps',
             'warmup': ['Rowing machine - 5 min', 'Band pull-aparts', 'Shoulder rolls'],
             'exercises': [
-                {'name': 'Deadlifts', 'sets': 4, 'reps': '6-8' if level == 'beginner' else '5-6', 'rest': '3 min', 'notes': 'Focus on form'},
+                {'name': 'Deadlifts', 'sets': 4, 'reps': '6-8' if level == 'beginner' else '5-6', 'rest': '3 min'},
                 {'name': 'Pull-ups or Lat Pulldowns', 'sets': 4, 'reps': '8-10', 'rest': '90s'},
                 {'name': 'Barbell Rows', 'sets': 4, 'reps': '8-10', 'rest': '90s'},
                 {'name': 'Face Pulls', 'sets': 3, 'reps': '12-15', 'rest': '60s'},
@@ -585,7 +585,7 @@ def generate_muscle_strength_plan(level, days):
             'focus': 'Legs & Core',
             'warmup': ['Leg swings', 'Hip circles', 'Bodyweight squats'],
             'exercises': [
-                {'name': 'Barbell Squats', 'sets': 4, 'reps': '8-10' if level == 'beginner' else '6-8', 'rest': '2-3 min', 'notes': 'Go deep, maintain form'},
+                {'name': 'Barbell Squats', 'sets': 4, 'reps': '8-10' if level == 'beginner' else '6-8', 'rest': '2-3 min'},
                 {'name': 'Romanian Deadlifts', 'sets': 4, 'reps': '8-10', 'rest': '90s'},
                 {'name': 'Leg Press', 'sets': 4, 'reps': '10-12', 'rest': '90s'},
                 {'name': 'Leg Curls', 'sets': 3, 'reps': '12-15', 'rest': '60s'},
@@ -604,7 +604,7 @@ def generate_muscle_strength_plan(level, days):
                 {'name': 'Front Raises', 'sets': 3, 'reps': '12-15', 'rest': '60s'},
                 {'name': 'Rear Delt Flyes', 'sets': 3, 'reps': '12-15', 'rest': '60s'},
                 {'name': 'Superset: Bicep Curls + Tricep Dips', 'sets': 3, 'reps': '12-15 each', 'rest': '90s'},
-                {'name': 'Farmers Walk', 'sets': 3, 'reps': '30-45s', 'rest': '60s', 'notes': 'Heavy weight'},
+                {'name': 'Farmers Walk', 'sets': 3, 'reps': '30-45s', 'rest': '60s'},
             ],
             'cooldown': ['Shoulder stretches', 'Arm stretches', 'Light cardio']
         }
@@ -633,9 +633,9 @@ def generate_calisthenics_plan(level, days):
             'focus': 'Push Exercises',
             'warmup': ['Arm circles', 'Shoulder rotations', 'Wrist mobility', 'Light cardio - 5 min'],
             'exercises': [
-                {'name': 'Push-ups', 'sets': 4, 'reps': '10-15' if level == 'beginner' else '15-20', 'rest': '90s', 'notes': 'Focus on form'},
+                {'name': 'Push-ups', 'sets': 4, 'reps': '10-15' if level == 'beginner' else '15-20', 'rest': '90s'},
                 {'name': 'Diamond Push-ups', 'sets': 3, 'reps': '8-10' if level == 'beginner' else '10-15', 'rest': '90s'},
-                {'name': 'Pike Push-ups', 'sets': 3, 'reps': '10-12', 'rest': '90s', 'notes': 'Shoulder focus'},
+                {'name': 'Pike Push-ups', 'sets': 3, 'reps': '10-12', 'rest': '90s'},
                 {'name': 'Dips (on parallel bars or bench)', 'sets': 3, 'reps': '8-10' if level == 'beginner' else '12-15', 'rest': '90s'},
                 {'name': 'Pseudo Planche Push-ups', 'sets': 3, 'reps': '8-10' if level == 'advanced' else '5-8', 'rest': '2 min'},
             ],
@@ -646,11 +646,11 @@ def generate_calisthenics_plan(level, days):
             'focus': 'Pull Exercises',
             'warmup': ['Dead hangs', 'Scapular pulls', 'Band pull-aparts', 'Arm swings'],
             'exercises': [
-                {'name': 'Pull-ups', 'sets': 4, 'reps': '5-8' if level == 'beginner' else '8-12', 'rest': '2 min', 'notes': 'Use assistance if needed'},
+                {'name': 'Pull-ups', 'sets': 4, 'reps': '5-8' if level == 'beginner' else '8-12', 'rest': '2 min'},
                 {'name': 'Chin-ups', 'sets': 3, 'reps': '5-8' if level == 'beginner' else '8-12', 'rest': '2 min'},
                 {'name': 'Australian Rows', 'sets': 4, 'reps': '12-15', 'rest': '90s'},
                 {'name': 'Typewriter Pull-ups', 'sets': 3, 'reps': '6-8' if level == 'advanced' else '4-6', 'rest': '2 min'},
-                {'name': 'Dead Hang', 'sets': 3, 'reps': '20-30s' if level == 'beginner' else '45-60s', 'rest': '90s', 'notes': 'Grip strength'},
+                {'name': 'Dead Hang', 'sets': 3, 'reps': '20-30s' if level == 'beginner' else '45-60s', 'rest': '90s'},
             ],
             'cooldown': ['Back stretches', 'Lat stretches', 'Bicep stretches']
         },
@@ -659,10 +659,10 @@ def generate_calisthenics_plan(level, days):
             'focus': 'Legs & Core',
             'warmup': ['Leg swings', 'Hip circles', 'Ankle mobility', 'Light squats'],
             'exercises': [
-                {'name': 'Pistol Squats', 'sets': 4, 'reps': '5-8 each' if level == 'beginner' else '10-12 each', 'rest': '90s', 'notes': 'Use assistance if needed'},
+                {'name': 'Pistol Squats', 'sets': 4, 'reps': '5-8 each' if level == 'beginner' else '10-12 each', 'rest': '90s'},
                 {'name': 'Bulgarian Split Squats', 'sets': 3, 'reps': '12-15 each leg', 'rest': '90s'},
                 {'name': 'Jump Squats', 'sets': 3, 'reps': '15-20', 'rest': '60s'},
-                {'name': 'Nordic Curls', 'sets': 3, 'reps': '5-8' if level == 'beginner' else '8-10', 'rest': '2 min', 'notes': 'Hamstring focus'},
+                {'name': 'Nordic Curls', 'sets': 3, 'reps': '5-8' if level == 'beginner' else '8-10', 'rest': '2 min'},
                 {'name': 'L-sit Hold', 'sets': 3, 'reps': '10-15s' if level == 'beginner' else '20-30s', 'rest': '90s'},
                 {'name': 'Dragon Flags', 'sets': 3, 'reps': '6-8' if level == 'advanced' else '3-5', 'rest': '2 min'},
             ],
@@ -673,8 +673,8 @@ def generate_calisthenics_plan(level, days):
             'focus': 'Skills & Dynamics',
             'warmup': ['Full body movement', 'Joint mobility', 'Light skill practice'],
             'exercises': [
-                {'name': 'Handstand Practice', 'sets': 5, 'reps': '20-30s' if level == 'beginner' else '45-60s', 'rest': '2 min', 'notes': 'Against wall or freestanding'},
-                {'name': 'Muscle-ups', 'sets': 4, 'reps': '2-4' if level == 'beginner' else '5-8', 'rest': '3 min', 'notes': 'Use progressions if needed'},
+                {'name': 'Handstand Practice', 'sets': 5, 'reps': '20-30s' if level == 'beginner' else '45-60s', 'rest': '2 min'},
+                {'name': 'Muscle-ups', 'sets': 4, 'reps': '2-4' if level == 'beginner' else '5-8', 'rest': '3 min'},
                 {'name': 'Planche Progressions', 'sets': 4, 'reps': '15-20s hold', 'rest': '2 min'},
                 {'name': 'Front Lever Progressions', 'sets': 4, 'reps': '15-20s hold', 'rest': '2 min'},
                 {'name': 'Human Flag Practice', 'sets': 3, 'reps': '10-15s' if level == 'advanced' else '5-10s', 'rest': '2-3 min'},
