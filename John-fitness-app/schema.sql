@@ -1,6 +1,4 @@
--- Fitness Workout Plan Website Database Schema
-
--- Users table for authentication
+-- Users table for authentication --
 CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
@@ -9,7 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- User profiles table storing fitness information
+-- User profiles table storing fitness information --
 CREATE TABLE IF NOT EXISTS user_profiles (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER UNIQUE NOT NULL,
@@ -28,7 +26,7 @@ CREATE TABLE IF NOT EXISTS user_profiles (
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
--- Workout plans table
+-- Workout plans table --
 CREATE TABLE IF NOT EXISTS workout_plans (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     user_id INTEGER NOT NULL,
@@ -41,7 +39,7 @@ CREATE TABLE IF NOT EXISTS workout_plans (
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
--- Indexes for better query performance
+-- Indexes for better query performance --
 CREATE INDEX IF NOT EXISTS idx_user_profiles_user_id ON user_profiles(user_id);
 CREATE INDEX IF NOT EXISTS idx_workout_plans_user_id ON workout_plans(user_id);
 CREATE INDEX IF NOT EXISTS idx_workout_plans_is_active ON workout_plans(user_id, is_active);
